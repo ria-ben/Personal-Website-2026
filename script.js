@@ -125,6 +125,75 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Photo cycle: auto-scroll + arrows + drag to scroll
+(function () {
+    const track = document.getElementById('photoCycleTrack');
+    if (!track) return;
 
+    let offset = 0;
+    const autoSpeed = 1.4;
+    let halfWidth = 0;
+    let rafId = null;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartOffset = 0;
+
+    function getHalfWidth() {
+        return track.scrollWidth / 2;
+    }
+
+    function setOffset(value, noWrap) {
+        halfWidth = getHalfWidth();
+        if (halfWidth <= 0) return;
+        if (noWrap) {
+            offset = value;
+        } else {
+            offset = value;
+            while (offset >= halfWidth) offset -= halfWidth;
+            while (offset < 0) offset += halfWidth;
+        }
+        track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    }
+
+    function tick() {
+        if (!isDragging) {
+            setOffset(offset + autoSpeed);
+        }
+        rafId = requestAnimationFrame(tick);
+    }
+
+    halfWidth = getHalfWidth();
+    setOffset(0);
+    rafId = requestAnimationFrame(tick);
+
+    // Drag to scroll
+    function onPointerDown(e) {
+        isDragging = true;
+        dragStartX = e.clientX != null ? e.clientX : e.touches[0].clientX;
+        dragStartOffset = offset;
+    }
+
+    function onPointerMove(e) {
+        if (!isDragging) return;
+        const x = e.clientX != null ? e.clientX : e.touches[0].clientX;
+        const delta = dragStartX - x;
+        setOffset(dragStartOffset + delta, true);
+    }
+
+    function onPointerUp() {
+        if (isDragging) {
+            isDragging = false;
+            setOffset(offset); // wrap back into range
+        }
+    }
+
+    track.addEventListener('mousedown', onPointerDown);
+    track.addEventListener('mousemove', onPointerMove);
+    track.addEventListener('mouseup', onPointerUp);
+    track.addEventListener('mouseleave', onPointerUp);
+    track.addEventListener('touchstart', onPointerDown, { passive: true });
+    track.addEventListener('touchmove', onPointerMove, { passive: true });
+    track.addEventListener('touchend', onPointerUp);
+})();
 
 
