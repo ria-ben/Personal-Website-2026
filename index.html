@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ria Bendiganavale - Personal Website</title>
+    <!-- Ensures assets and CSS load correctly on GitHub Pages (project site URL) -->
+    <base href="https://ria-ben.github.io/Personal-Website---2026/">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -366,7 +368,8 @@
                     Feel free to reach out!
                 </p>
                 <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjgebora" method="POST">
+                        <input type="hidden" name="_subject" value="New message from portfolio site">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -387,7 +390,7 @@
                     <div class="social-links">
                         <a href="https://github.com/ria-ben" target="_blank" class="social-link">GitHub</a>
                         <a href="https://www.linkedin.com/in/ria-ben" target="_blank" class="social-link">LinkedIn</a>
-                        <a href="mailto:your.email@example.com" class="social-link">Email</a>
+                        <a href="mailto:ria.ben723@gmail.com" class="social-link">Email</a>
                     </div>
                 </div>
             </div>

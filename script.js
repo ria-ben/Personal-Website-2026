@@ -40,30 +40,8 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Contact Form Handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        
-        // Create mailto link (you can replace this with actual form submission logic)
-        const mailtoLink = `mailto:your.email@example.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        alert('Thank you for your message! Your email client should open shortly.');
-        
-        // Reset form
-        contactForm.reset();
-    });
-}
+// Contact Form
+// The form posts to Formspree (see `action` attribute in index.html).
 
 // Intersection Observer for fade-in animations
 const observerOptions = {

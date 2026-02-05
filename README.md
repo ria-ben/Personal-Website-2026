@@ -14,8 +14,16 @@ A modern, responsive personal website showcasing education, experience, leadersh
 
 ## Getting Started
 
-1. Open `index.html` in your web browser
+1. Open `index.html` in your web browser (or run a local server, e.g. `python3 -m http.server 8000`, then open http://localhost:8000)
 2. No build process or dependencies required - it's a pure HTML/CSS/JavaScript website
+
+## Publishing to GitHub Pages
+
+1. **Push your latest code**: `git push origin main`
+2. **Check deployment**: Repo → **Settings** → **Pages** → Source should be **Deploy from a branch**, Branch **main**, Folder **/(root)**. Save if you change it.
+3. **Wait 1–2 minutes** after pushing for GitHub to rebuild the site.
+4. **Hard refresh** the site (Ctrl+Shift+R or Cmd+Shift+R) or open it in an incognito/private window to avoid cache.
+5. Live URL: `https://ria-ben.github.io/Personal-Website---2026/`
 
 ## Customization
 
