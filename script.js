@@ -40,8 +40,45 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Contact Form
-// The form posts to Formspree (see `action` attribute in index.html).
+// Contact Form – submit via Formspree (AJAX) and show success/error
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const btn = document.getElementById('contactSubmitBtn');
+        const status = document.getElementById('contactFormStatus');
+        const action = contactForm.getAttribute('action');
+        if (!action || !action.includes('formspree')) {
+            status.textContent = 'Form is not configured. Please set the Formspree form URL in the form action.';
+            status.className = 'contact-form-status contact-form-status--error';
+            return;
+        }
+        btn.disabled = true;
+        status.textContent = 'Sending…';
+        status.className = 'contact-form-status';
+        try {
+            const formData = new FormData(contactForm);
+            const res = await fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: { Accept: 'application/json' }
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                status.textContent = 'Thanks! Your message was sent.';
+                status.className = 'contact-form-status contact-form-status--success';
+                contactForm.reset();
+            } else {
+                status.textContent = data.error || 'Something went wrong. Please try again or email me directly.';
+                status.className = 'contact-form-status contact-form-status--error';
+            }
+        } catch (err) {
+            status.textContent = 'Something went wrong. Please try again or email me directly.';
+            status.className = 'contact-form-status contact-form-status--error';
+        }
+        btn.disabled = false;
+    });
+}
 
 // Intersection Observer for fade-in animations
 const observerOptions = {

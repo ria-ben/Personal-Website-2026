@@ -663,6 +663,20 @@ body {
     border-color: var(--text-primary);
 }
 
+.contact-form-status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.4em;
+}
+
+.contact-form-status--success {
+    color: var(--text-primary);
+}
+
+.contact-form-status--error {
+    color: #9a2e2e;
+}
+
 .contact-info {
     margin-top: 1.5rem;
 }
