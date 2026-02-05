@@ -871,6 +871,11 @@ body {
         font-size: 0.65rem;
     }
 
+    .photo-cycle::before,
+    .photo-cycle::after {
+        width: 1.25rem;
+    }
+
     .timeline {
         padding-left: 1.5rem;
     }
