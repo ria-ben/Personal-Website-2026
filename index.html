@@ -21,7 +21,14 @@
                 <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#leadership" class="nav-link">Leadership</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item--dropdown">
+                    <a href="#projects" class="nav-link nav-link--trigger" id="navProjectsTrigger">Projects</a>
+                    <ul class="nav-dropdown" aria-label="Projects submenu">
+                        <li><a href="#projects" class="nav-dropdown-link" data-tab="software-data">Software / Data</a></li>
+                        <li><a href="#projects" class="nav-dropdown-link" data-tab="product">Product</a></li>
+                        <li><a href="#projects" class="nav-dropdown-link" data-tab="design">Design</a></li>
+                    </ul>
+                </li>
                 <li><a href="#photography" class="nav-link">Photography</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -44,7 +51,10 @@
                 <p class="hero-welcome">Hi! Welcome to my portfolio.</p>
                 <h1 class="hero-name">Ria Bendiganavale</h1>
                 <p class="hero-tagline">Product · Engineering · Photography</p>
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="assets/Ria-Bendiganavale-Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View my resume</a>
+                </div>
             </div>
         </div>
     </section>
@@ -251,7 +261,13 @@
     <section id="projects" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
+            <div class="projects-tabs">
+                <button type="button" class="projects-tab projects-tab--active" data-tab="software-data">Software / Data</button>
+                <button type="button" class="projects-tab" data-tab="product">Product</button>
+                <button type="button" class="projects-tab" data-tab="design">Design</button>
+            </div>
+            <div class="projects-tab-panel projects-tab-panel--active" id="projects-software-data">
+                <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-header">
                         <h3>Citi Bike Demand Predictor</h3>
@@ -299,6 +315,19 @@
                         <li>Implemented interactive, low-latency UI (React + Canvas) for overlaying composition guides
                             and switching film-style previews.</li>
                     </ul>
+                </div>
+                </div>
+            </div>
+            <div class="projects-tab-panel" id="projects-product">
+                <p class="projects-in-progress">In progress</p>
+                <div class="projects-grid">
+                    <!-- Add product projects here -->
+                </div>
+            </div>
+            <div class="projects-tab-panel" id="projects-design">
+                <p class="projects-in-progress">In progress</p>
+                <div class="projects-grid">
+                    <!-- Add design work here -->
                 </div>
             </div>
         </div>
@@ -377,6 +406,7 @@
                         <span class="tag">Claude</span>
                         <span class="tag">ChatGPT</span>
                         <span class="tag">Copilot</span>
+                        <span class="tag">Figma</span>
                     </div>
                 </div>
             </div>
