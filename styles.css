@@ -347,7 +347,7 @@ body {
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 2rem;
+    padding-left: 4.5rem;
 }
 
 .timeline::before {
@@ -358,12 +358,13 @@ body {
     bottom: 0;
     width: 1px;
     background: var(--border-color);
+    z-index: 0;
 }
 
 .timeline-item {
     position: relative;
     margin-bottom: 2.5rem;
-    padding-left: 2.5rem;
+    padding-left: 5rem;
 }
 
 .timeline-marker {
@@ -374,6 +375,48 @@ body {
     height: 10px;
     background: var(--text-primary);
     border-radius: 0;
+}
+
+.timeline-logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8rem;
+    height: 8rem;
+    overflow: hidden;
+    background: var(--bg-cream);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.timeline-logo:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.03);
+    border-color: var(--text-secondary);
+}
+
+.timeline-logo img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+/* Dark logos (e.g. Rutgers red-on-black) – better contrast and framing */
+.timeline-logo--dark {
+    background: #ebe9e6;
+    border-color: #ddd9d4;
+}
+
+.timeline-logo--dark img {
+    width: 78%;
+    height: 78%;
 }
 
 .timeline-content {
@@ -683,6 +726,23 @@ body {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.photography-specialties {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.photography-dot {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    padding: 0 0.25rem;
 }
 
 .photography-link-wrap {
@@ -1021,11 +1081,20 @@ body {
     }
 
     .timeline {
-        padding-left: 1.5rem;
+        padding-left: 3.25rem;
     }
 
     .timeline-item {
-        padding-left: 2rem;
+        padding-left: 3.5rem;
+    }
+
+    .timeline-logo {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .timeline-marker {
+        left: -5px;
     }
 
     .leadership-grid,

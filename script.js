@@ -10,7 +10,7 @@ hamburger.addEventListener('click', () => {
 // Close mobile menu when clicking on a link (except Projects dropdown trigger)
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-        if (link.id === 'navProjectsTrigger') return; // handle in dropdown logic
+        if (link.id === 'navProjectsTrigger' || link.id === 'navContactTrigger') return; // handle in dropdown logic
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     });
@@ -18,34 +18,45 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 // Projects dropdown: trigger toggles on mobile; dropdown links scroll + switch tab
 const navProjectsTrigger = document.getElementById('navProjectsTrigger');
-const navDropdown = document.querySelector('.nav-item--dropdown');
-if (navProjectsTrigger && navDropdown) {
+const navProjectsDropdown = navProjectsTrigger ? navProjectsTrigger.closest('.nav-item--dropdown') : null;
+if (navProjectsTrigger && navProjectsDropdown) {
     navProjectsTrigger.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
-            navDropdown.classList.toggle('nav-item--open');
+            navProjectsDropdown.classList.toggle('nav-item--open');
+        }
+    });
+}
+const navContactTrigger = document.getElementById('navContactTrigger');
+const navContactDropdown = navContactTrigger ? navContactTrigger.closest('.nav-item--dropdown') : null;
+if (navContactTrigger && navContactDropdown) {
+    navContactTrigger.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            navContactDropdown.classList.toggle('nav-item--open');
         }
     });
 }
 document.querySelectorAll('.nav-dropdown-link').forEach(link => {
     link.addEventListener('click', function (e) {
-        e.preventDefault();
         const tab = this.getAttribute('data-tab');
-        const target = document.querySelector('#projects');
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        if (tab) {
+            e.preventDefault();
+            const target = document.querySelector('#projects');
+            if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            }
+            document.querySelectorAll('.projects-tab').forEach(t => t.classList.remove('projects-tab--active'));
+            document.querySelectorAll('.projects-tab-panel').forEach(p => p.classList.remove('projects-tab-panel--active'));
+            const tabBtn = document.querySelector('.projects-tab[data-tab="' + tab + '"]');
+            const panel = document.getElementById('projects-' + tab);
+            if (tabBtn) tabBtn.classList.add('projects-tab--active');
+            if (panel) panel.classList.add('projects-tab-panel--active');
         }
-        // Switch projects tab
-        document.querySelectorAll('.projects-tab').forEach(t => t.classList.remove('projects-tab--active'));
-        document.querySelectorAll('.projects-tab-panel').forEach(p => p.classList.remove('projects-tab-panel--active'));
-        const tabBtn = document.querySelector('.projects-tab[data-tab="' + tab + '"]');
-        const panel = document.getElementById('projects-' + tab);
-        if (tabBtn) tabBtn.classList.add('projects-tab--active');
-        if (panel) panel.classList.add('projects-tab-panel--active');
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
-        if (navDropdown) navDropdown.classList.remove('nav-item--open');
+        document.querySelectorAll('.nav-item--dropdown').forEach(d => d.classList.remove('nav-item--open'));
     });
 });
 
